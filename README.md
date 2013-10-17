@@ -39,12 +39,12 @@ Growl notifications will show the Dropbox icon, which looks nicer. But terminal-
 
 ### "How do I install this?" ###
 
-1. Download the shell script and put it somewhere in your $PATH such as /usr/local/bin/is-dropbox-current.sh 
+1. [Download the shell script][3] and put it somewhere in your $PATH such as /usr/local/bin/is-dropbox-current.sh 
 
 2. Make sure it is executable by running this command in Terminal: `chmod 755 /usr/local/bin/is-dropbox-current.sh`
 
 3. If you want to use launchd:
-	* Download **com.tjluoma.is-dropbox-current.plist** and save it to `~/Library/LaunchAgents/`
+	* Download [com.tjluoma.is-dropbox-current.plist][3] and save it to `~/Library/LaunchAgents/`
 	* Run this command in Terminal.app: `launchctl load ~/Library/LaunchAgents/com.tjluoma.is-dropbox-current.plist`
 
 Note that by default the script will run once a day at 3:00 p.m. local time. You can change that by editing the plist. I highly recommend [LaunchControl][2] for working with launchd. [Lingon] is also very good, and might be a little more "user friendly" if you are not familiar with launchd. Remember to reload the plist after making any changes.
@@ -59,3 +59,7 @@ Note that by default the script will run once a day at 3:00 p.m. local time. You
 [1]: https://github.com/alloy/terminal-notifier
 
 [2]: http://www.soma-zone.com/LaunchControl/
+
+[3]: https://raw.github.com/tjluoma/is-dropbox-current/master/com.tjluoma.is-dropbox-current.plist
+
+[4]: https://raw.github.com/tjluoma/is-dropbox-current/master/is-dropbox-current.sh
