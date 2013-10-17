@@ -49,6 +49,15 @@ Growl notifications will show the Dropbox icon, which looks nicer. But terminal-
 
 Note that by default the script will run once a day at 3:00 p.m. local time. You can change that by editing the plist. I highly recommend [LaunchControl][2] for working with launchd. [Lingon] is also very good, and might be a little more "user friendly" if you are not familiar with launchd. Remember to reload the plist after making any changes.
 
+## Disclaimer ##
+
+2013-10-17 - This script is "beta" by which I mean "It _should_ work perfectly, but it has not yet been tested under 'real world' conditions, because Dropbox has not released a new version of the Mac app since I wrote it.
+
+It is also worth noting that this script checks <http://dropbox.com/install> which means two things:
+
+1. There may be a newer build available in [the forums][5] but those are "beta" builds.
+
+2. The script relies on HTML 'scraping' which is extremely fragile and prone to failure if Dropbox changes the underlying HTML to that page.
 
 [Lingon]: http://www.peterborgapps.com/lingon/
 
@@ -63,3 +72,5 @@ Note that by default the script will run once a day at 3:00 p.m. local time. You
 [3]: https://raw.github.com/tjluoma/is-dropbox-current/master/com.tjluoma.is-dropbox-current.plist
 
 [4]: https://raw.github.com/tjluoma/is-dropbox-current/master/is-dropbox-current.sh
+
+[5]: https://forums.dropbox.com
