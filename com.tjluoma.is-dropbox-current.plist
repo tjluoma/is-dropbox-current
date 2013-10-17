@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AbandonProcessGroup</key>
+	<true/>
+	<key>Label</key>
+	<string>com.tjluoma.is-dropbox-current</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/bin/env</string>
+		<string>is-dropbox-current.sh</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/tmp/is-dropbox-current.log</string>
+	<key>StandardOutPath</key>
+	<string>/tmp/is-dropbox-current.log</string>
+	<key>StartCalendarInterval</key>
+	<array>
+		<dict>
+			<key>Hour</key>
+			<integer>15</integer>
+			<key>Minute</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+</dict>
+</plist>
