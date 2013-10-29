@@ -6,16 +6,45 @@
 # Web: 	http://RhymesWithDiploma.com
 # Date:	2013-10-17
 
-NAME="$0:t:r"
+NAME="$0:t"
 
 HUSHFILE="$HOME/.hush-$NAME"
 
-if [ -x /Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier -o -x /usr/local/bin/terminal-notifier ]
+
+if (( $+commands[terminal-notifier] ))
+then
+
+		# No alias needed
+
+		alias terminal-notifier=$(which terminal-notifier)
+		TERMINAL_NOTIFIER_INSTALLED='yes'
+else
+
+		for TN in "/Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier" \
+		"/usr/local/bin/terminal-notifier" \
+		"$HOME/bin/terminal-notifier" \
+		"$HOME/Dropbox/bin/terminal-notifier"
+		do
+				if [ -x "$TN" ]
+				then
+					alias terminal-notifier="$TN"
+					TERMINAL_NOTIFIER_INSTALLED='yes'
+				fi
+		done
+fi
+
+
+
+if [ "$TERMINAL_NOTIFIER_INSTALLED" = "yes" ]
 then
 
 	function is_notinstalled {
 
-		terminal-notifier -message "Click to download latest version" -title "Dropbox is Not Installed " -subtitle "From $NAME" -open 'https://www.dropbox.com/downloading?os=mac'
+		terminal-notifier 	-sender com.getdropbox.dropbox \
+							-message "Click to download latest version" \
+							-title "Dropbox is Not Installed " \
+							-subtitle "From: $NAME" \
+							-open 'https://www.dropbox.com/downloading?os=mac'
 
 		exit 0
 	}
@@ -38,28 +67,37 @@ then
 
 		else
 
-				terminal-notifier -message "Click to disable future 'Up-To-Date' alerts" -title "Dropbox is Up-To-Date ($INSTALLED_VERSION)" -subtitle "From $NAME" -execute "/usr/bin/touch ${HUSHFILE}"
+				terminal-notifier	-sender com.getdropbox.dropbox \
+									-message "Click to disable future 'Up-To-Date' alerts" \
+									-title "Dropbox is Up-To-Date ($INSTALLED_VERSION)" \
+									-subtitle "From: $NAME" \
+									-execute "/usr/bin/touch ${HUSHFILE}"
 
 				exit 0
 		fi
 	}
 
-	function is_outdated  {
-		terminal-notifier -message "Click to download version $CURRENT_VERSION" -title "Dropbox $INSTALLED_VERSION is outdated." -subtitle "From $NAME" -open 'https://www.dropbox.com/downloading?os=mac'
+	function is_outdated {
+		terminal-notifier 	-sender com.getdropbox.dropbox \
+							-message "Click to download version $CURRENT_VERSION" \
+							-title "Dropbox $INSTALLED_VERSION is outdated." \
+							-subtitle "From: $NAME" \
+							-open 'https://www.dropbox.com/downloading?os=mac'
 
 		exit 0
 
 	}
+
 
 elif (( $+commands[growlnotify] ))
 then
 
 	function is_notinstalled {
 
-		growlnotify  \
-			--appIcon "Terminal"  \
-			--identifier "$NAME"  \
-			--message "Dropbox is not installed!"  \
+		growlnotify \
+			--appIcon "Terminal" \
+			--identifier "$NAME" \
+			--message "Dropbox is not installed!" \
 			--title "$NAME"
 
 		exit 0
@@ -84,23 +122,23 @@ then
 
 		else
 
-				growlnotify  \
-					--appIcon "Dropbox"  \
-					--identifier "$NAME"  \
-					--message "Create a file at '$HUSHFILE' to disable future Up-To-Date messages."  \
+				growlnotify \
+					--appIcon "Dropbox" \
+					--identifier "$NAME" \
+					--message "Create a file at '$HUSHFILE' to disable future Up-To-Date messages." \
 					--title "Dropbox is Up-To-Date"
 
 				exit 0
 		fi
 	}
 
-	function is_outdated  {
+	function is_outdated {
 
-		growlnotify  \
+		growlnotify \
 			--sticky \
-			--appIcon "Dropbox"  \
-			--identifier "$NAME"  \
-			--message "Go to http://dropbox.com/install to get the latest version."  \
+			--appIcon "Dropbox" \
+			--identifier "$NAME" \
+			--message "Go to http://dropbox.com/install to get the latest version." \
 			--title "Dropbox $INSTALLED_VERSION is outdated"
 
 	}
@@ -108,7 +146,7 @@ then
 else
 
 	function is_notinstalled {
-								echo "$NAME: Dropbox is not installed. Go to  http://dropbox.com/install to get the latest version."
+								echo "$NAME: Dropbox is not installed. Go to http://dropbox.com/install to get the latest version."
 								exit
 							}
 	function is_current {
@@ -116,7 +154,7 @@ else
 								exit
 						}
 
-	function is_outdated  {
+	function is_outdated {
 								echo "$NAME: Dropbox is outdated. Go to http://dropbox.com/install to get the latest version."
 								exit
 						}
@@ -129,10 +167,7 @@ fi
 #		This is where we actually start checking things
 #
 
-
-
-INSTALLED_VERSION=$(fgrep -A1 CFBundleShortVersionString /Applications/Dropbox.app/Contents/Info.plist 2>/dev/null | tr -dc '[0-9].')
-
+INSTALLED_VERSION=$(fgrep -A1 'CFBundleShortVersionString' '/Applications/Dropbox.app/Contents/Info.plist' 2>/dev/null | tr -dc '[0-9].')
 
 if [[ "$INSTALLED_VERSION" == "" ]]
 then
@@ -160,8 +195,6 @@ else
 			# No Update Needed
 		is_current
 fi
-
-
 
 exit
 #
