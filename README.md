@@ -51,7 +51,7 @@ Note that by default the script will run once a day at 3:00 p.m. local time. You
 
 ## Disclaimer ##
 
-2013-10-17 - This script is "beta" by which I mean "It _should_ work perfectly, but it has not yet been tested under 'real world' conditions, because Dropbox has not released a new version of the Mac app since I wrote it.
+**2013-10-17:** This script is "beta" by which I mean "It _should_ work perfectly, but it has not yet been tested under 'real world' conditions, because Dropbox has not released a new version of the Mac app since I wrote it.
 
 It is also worth noting that this script checks <http://dropbox.com/install> which means two things:
 
@@ -59,18 +59,18 @@ It is also worth noting that this script checks <http://dropbox.com/install> whi
 
 2. The script relies on HTML 'scraping' which is extremely fragile and prone to failure if Dropbox changes the underlying HTML to that page.
 
+**2013-10-28:** 
+
+* It seems to work fairly well. 
+* I added **`-sender com.getdropbox.dropbox`** to [terminal-notifier][1].
+
+
 [Lingon]: http://www.peterborgapps.com/lingon/
-
 [growlnotify]: http://growl.info/downloads
-
 [Growl]: https://itunes.apple.com/app/growl/id467939042
 
 [1]: https://github.com/alloy/terminal-notifier
-
 [2]: http://www.soma-zone.com/LaunchControl/
-
 [3]: https://raw.github.com/tjluoma/is-dropbox-current/master/com.tjluoma.is-dropbox-current.plist
-
 [4]: https://raw.github.com/tjluoma/is-dropbox-current/master/is-dropbox-current.sh
-
 [5]: https://forums.dropbox.com
