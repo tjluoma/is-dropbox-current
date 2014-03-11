@@ -39,7 +39,7 @@ Growl notifications will show the Dropbox icon, which looks nicer. But terminal-
 
 ### "How do I install this?" ###
 
-1. [Download the shell script][3] and put it somewhere in your $PATH such as /usr/local/bin/is-dropbox-current.sh 
+1. [Download the shell script][6] and put it somewhere in your $PATH such as /usr/local/bin/is-dropbox-current.sh 
 
 2. Make sure it is executable by running this command in Terminal: `chmod 755 /usr/local/bin/is-dropbox-current.sh`
 
@@ -74,3 +74,4 @@ It is also worth noting that this script checks <http://dropbox.com/install> whi
 [3]: https://raw.github.com/tjluoma/is-dropbox-current/master/com.tjluoma.is-dropbox-current.plist
 [4]: https://raw.github.com/tjluoma/is-dropbox-current/master/is-dropbox-current.sh
 [5]: https://forums.dropbox.com
+[6]: https://raw.github.com/tjluoma/is-dropbox-current/master/is-dropbox-current.sh
